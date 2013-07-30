@@ -1,0 +1,87 @@
+// Place all the styles related to the wines controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.controls {
+  margin-bottom: 9px;
+}
+
+.wine-listing {
+  padding: 6px 9px 6px 9px;
+  margin-bottom: 9px;
+  
+  &:hover {
+    background-color: #67E46F;
+  }
+  
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .actions {
+    float: right;
+  }
+    
+  .tags {
+    display: none;
+  }
+    
+  .name {
+    font-weight: bold;
+  }
+    
+  .reviews {
+    display: none;
+    margin-left: 9px;  
+    font-style: italic;  
+      
+    .review {
+       margin-top: 9px;
+        
+       .reviewer {
+          font-weight: bold;
+        }
+     }
+      
+  }
+}
+
+.text_field.wine_lcbo {
+  width: 6em;
+}
+
+// Nudge inline button up to match input text field.
+button#load-lcbo {
+  margin-bottom: 10px;
+}
+
+// Style label and text field for errors.
+.field_with_errors {
+  label {
+    font-weight: bold;
+    color: #b94a48;
+  }
+  
+  input.text_field {
+    background-color: #ffeeee;
+  }
+}
+
+// Instructional text styles
+.instructions {
+  // To match bootstrap <label>.
+  margin-bottom: 5px;
+}
+
+// LCBO messages area
+#lcbo-messages {
+
+  #error-message {
+    display: none;
+  }
+  
+  #warning-message {
+    display: none;
+  }
+}

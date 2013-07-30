@@ -1,0 +1,113 @@
+<%- model_class = Wine -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+
+<% if @wine.errors.any? %>
+  <div class='alert alert-error'>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    The new wine could not be created.
+    <ul>
+      <% @wine.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @wine, :html => { :class => 'xform-horizontal' } do |f| %>
+  <div class="control-group">
+    <div class='instructions'>
+      <%= t 'wine.lcbo.description' %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :lcbo, :class => 'text_field wine_lcbo' %>
+      <%= button_tag 'Load wine info', :type => 'button', :class => 'btn', :id => 'load-lcbo' %>
+    </div>
+  </div>
+
+  <div id='lcbo-messages'>
+    <div class="alert alert-error" id='error-message'>
+      <span></span>
+    </div>
+    <div class="alert" id='warning-message'>
+      <span></span>
+    </div>
+  </div>
+
+  <div class='image'>
+    <img src='' id='wine-thumb-image'/>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field span6' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :varietal, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :varietal, :class => 'text_field span2' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :vintage, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :vintage, :class => 'text_field span1' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :producer, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :producer, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :origin, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :origin, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :appellation, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :appellation, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :availability, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :availability, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :alcohol, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :alcohol, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :price, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :price, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :tags, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :tags, :class => 'text_field span8' %>
+    </div>
+  </div>
+
+  <%= f.fields_for :reviews do |builder| %>
+    <%= render 'reviews_form', :f => builder %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                wines_path, :class => 'btn' %>
+  </div>
+<% end %>
+

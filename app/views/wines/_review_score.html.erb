@@ -1,0 +1,7 @@
+<% score.to_i.times do |i| %>
+<i class='icon-star'></i>
+<% end %>
+<% if score.to_i < score %>
+<i class='icon-star-empty'></i>
+<% end %>
+(<%= t 'wine.listing.review.score', :score => score %>)

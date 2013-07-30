@@ -1,0 +1,41 @@
+<%- model_class = Wine -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @wine.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:varietal) %>:</strong></dt>
+  <dd><%= @wine.varietal %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:varietal_in_name) %>:</strong></dt>
+  <dd><%= @wine.varietal_in_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:vintage) %>:</strong></dt>
+  <dd><%= @wine.vintage %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:producer) %>:</strong></dt>
+  <dd><%= @wine.producer %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:appellation) %>:</strong></dt>
+  <dd><%= @wine.appellation %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:region) %>:</strong></dt>
+  <dd><%= @wine.region %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:country) %>:</strong></dt>
+  <dd><%= @wine.country %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:alcohol) %>:</strong></dt>
+  <dd><%= @wine.alcohol %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:lcbo) %>:</strong></dt>
+  <dd><%= @wine.lcbo %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
+  <dd><%= @wine.price %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              wines_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_wine_path(@wine), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              wine_path(@wine),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

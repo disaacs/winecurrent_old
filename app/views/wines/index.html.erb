@@ -1,0 +1,77 @@
+<%- model_class = Wine -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+
+<div class="controls">
+  <%= link_to t('.new', :default => t("helpers.links.new_wine")),
+        new_wine_path,
+        :class => 'btn btn-small' %>
+</div>
+
+<div class='filter'>
+  <%= text_field_tag 'filter', nil, :class => 'span6', :placeholder => "#{t 'wine.filter.placeholder'}" %>
+</div>
+
+<% @wines.each do |wine| %>
+
+  <div class="wine-listing">
+    <div class="actions">
+      <%= link_to '', edit_wine_path(wine), :class => 'icon-edit', :title => 'Edit wine' %>
+      <%= link_to '', wine_path(wine), :class => 'icon-remove', :title => 'Delete wine',
+            :method => :delete,
+            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+      %>
+    </div>
+    <div class="name">
+      <%= wine.name %>
+    </div>
+    <div class="location">
+      <% if not wine.producer.empty? %>
+        <%= wine.producer %>,
+      <% end %>
+      <% if not wine.appellation.empty? %>
+        <%= wine.appellation %>,
+      <% end %>
+      <%= wine.origin %>
+    </div>
+    <div class="details">
+      $<%= wine.price %>
+      <%= wine.alcohol %>% alcohol
+      <% if not wine.lcbo.empty? %>
+        (<%= wine.lcbo %>)
+      <% end %>
+    </div>
+    <div class="tags">
+      <%= wine.tags %>
+    </div>
+    <% if not wine.reviews.empty? %>
+      <div class='reviews-line'>
+        <%= t 'wine.listing.review_count', :count => wine.reviews.count %>
+      </div>
+    <% end %>
+    
+    <div class='reviews'>
+    <% wine.reviews.each do |review| %>
+      <div class='review'>
+        <div class='reviewer'>
+          <%= t 'wine.listing.review.reviewer', :reviewer => review.reviewer %>
+        </div>
+      <% if review.score %>
+        <div class='score'>
+          <%= render 'review_score', :score => review.score %>
+        </div>
+      <% end %>
+        <div class='text'>
+          <%= review.review %>
+        </div>
+      </div>
+    <% end %>
+    </div>
+
+  </div>
+
+
+<% end %>
+
+
